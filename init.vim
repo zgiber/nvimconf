@@ -6,11 +6,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Make sure you use single quotes
 
 " On-demand loading
-" Plug 'flazz/vim-colorschemes'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-" Plug 'freeo/vim-kalisi'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter',
 Plug 'tpope/vim-fugitive',
@@ -21,8 +19,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'buoto/gotests-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-syntastic/syntastic'
-" Plug 'preservim/tagbar'
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
@@ -54,7 +50,6 @@ set cursorline
 set scrolloff=99
 set termguicolors
 let g:rehash256 = 1
-" let g:molokai_original = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=light
 set signcolumn=yes
@@ -144,7 +139,6 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
-"nnoremap <C-p> :Files<CR>
 "nnoremap <C-p> :Files<CR>
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
