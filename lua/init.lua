@@ -1,11 +1,9 @@
 local nvim_lsp = require('lspconfig')
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -43,13 +41,29 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
+  require'completion'.on_attach()
 end
+
+nvim_lsp.gopls.setup {
+  on_attach = on_attach,
+  cmd = {"gopls", "serve"},
+  settings = {
+	gopls = {
+	  analyses = {
+		unusedparams = true,
+		nilness = true,
+		shadow = true,
+	  },
+	  staticcheck = true,
+    },
+  },
+}
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver", "gopls", "svelte"}
+local servers = { "pyright", "rust_analyzer", "tsserver", "svelte"}
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup{on_attach=require'completion'.on_attach}		
+	nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
 function goimports(timeoutms)
@@ -81,4 +95,3 @@ function goimports(timeoutms)
     vim.lsp.buf.execute_command(action)
   end
 end
-

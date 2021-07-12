@@ -7,6 +7,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " On-demand loading
 Plug 'cormacrelf/vim-colors-github'
+Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -22,12 +23,9 @@ Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
 Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'google/protobuf'
-Plug 'dart-lang/dart-vim-plugin'
 Plug 'maksimr/vim-jsbeautify'
 
 " Initialize plugin system
@@ -193,17 +191,8 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-" easy close buffers
-nnoremap <Leader>q :bp<CR>:bd #<CR>
-
 " exit terminal edit mode with ESC
 tnoremap <Esc> <C-\><C-n>
-
-" rust settings
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " set completeopt+=longest
 nnoremap <TAB> :bnext<CR>
@@ -242,10 +231,10 @@ autocmd BufWritePre *.go lua goimports(1000)
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"
-" " Set completeopt to have a better completion experience
+
+"" Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
-"
+
 "" Avoid showing message extra message when using completion
 set shortmess+=c"
 
