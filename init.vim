@@ -9,7 +9,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'cormacrelf/vim-colors-github'
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter',
 Plug 'tpope/vim-fugitive',
@@ -183,8 +183,8 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 
 " find stuff within files in project
-nnoremap <Leader>f<SPACE> :Find
-nnoremap <Leader>f<CR> :Find <C-r><C-w><CR>
+nnoremap <SPACE>f<SPACE> :Find
+nnoremap <SPACE>f<CR> :Find <C-r><C-w><CR>
 
 " NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
@@ -224,8 +224,11 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
 
+let g:AutoPairsMapCR = 1
+
 " Loads lua config
 lua require('init') 
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
 autocmd BufWritePre *.go lua goimports(1000)
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -237,4 +240,6 @@ set completeopt=menuone,noinsert,noselect
 
 "" Avoid showing message extra message when using completion
 set shortmess+=c"
+
+"
 
