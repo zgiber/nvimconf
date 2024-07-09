@@ -7,6 +7,7 @@ return {
       vim.cmd([[colorscheme github_light_tritanopia]])
     end,
   },
+  "mattn/vim-goimports",
   "folke/neodev.nvim",
   "folke/which-key.nvim",
   { "folke/neoconf.nvim", cmd = "Neoconf" },
